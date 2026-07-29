@@ -54,8 +54,8 @@ const CONFIG_STATS = [
    Ganti nilai "url" dengan link profilmu. Kosongkan ("") untuk sembunyi.
    ---------------------------------------------------------------- */
 const CONFIG_SOCIAL = {
-  email: "satu@example.com",
-  instagram: "https://instagram.com/.dev",   // kosongkan "" untuk sembunyikan
+  email: "efendisetiaji07@gmail.com",
+  instagram: "https://www.instagram.com/nikkgml/.dev",   // kosongkan "" untuk sembunyikan
   github: "https://github.com/placeholder",
   linkedin: "https://linkedin.com/in/placeholder",
   twitter: "",   // kosongkan "" untuk sembunyikan
