@@ -56,8 +56,8 @@ const CONFIG_STATS = [
 const CONFIG_SOCIAL = {
   email: "efendisetiaji07@gmail.com",
   instagram: "https://www.instagram.com/nikkgml/.dev",   // kosongkan "" untuk sembunyikan
-  github: "https://github.com/placeholder",
-  linkedin: "https://linkedin.com/in/placeholder",
+  github: "https://github.com/NikkGml",
+  linkedin: "",
   twitter: "",   // kosongkan "" untuk sembunyikan
 };
 
