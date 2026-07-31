@@ -106,7 +106,7 @@ const CONFIG_PROJECTS = [
     desc: "Aplikasi web untuk Top Up Game.",
     tags: ["PHP", "MySQL", "Bootstrap"],
     category: "Web App",
-    link: "https://vercel.com/nikkgmls-projects/website-top-up/AkhG5sk8jTfPSpV58dJBSV47q2JX",   // ganti dengan URL proyekmu
+    link: "https://website-top-up-sigma.vercel.app/",   // ganti dengan URL proyekmu
   },
   {
     title: "Mobile App Pemesanan",
