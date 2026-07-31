@@ -102,9 +102,9 @@ const CONFIG_SKILLS = {
    ---------------------------------------------------------------- */
 const CONFIG_PROJECTS = [
   {
-    title: "Sistem Informasi Sekolah",
+    title: "Zora Store",
     desc: "Aplikasi web untuk Top Up Game.",
-    tags: ["PHP", "MySQL", "Bootstrap"],
+    tags: ["HTML", "CSS"],
     category: "Web App",
     link: "https://website-top-up-sigma.vercel.app/",   // ganti dengan URL proyekmu
   },
