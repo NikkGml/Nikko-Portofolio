@@ -103,10 +103,10 @@ const CONFIG_SKILLS = {
 const CONFIG_PROJECTS = [
   {
     title: "Sistem Informasi Sekolah",
-    desc: "Aplikasi web untuk mengelola data siswa, nilai, dan absensi secara terintegrasi berbasis PHP & MySQL.",
+    desc: "Aplikasi web untuk Top Up Game.",
     tags: ["PHP", "MySQL", "Bootstrap"],
     category: "Web App",
-    link: "#",   // ganti dengan URL proyekmu
+    link: "https://vercel.com/nikkgmls-projects/website-top-up/AkhG5sk8jTfPSpV58dJBSV47q2JX",   // ganti dengan URL proyekmu
   },
   {
     title: "Mobile App Pemesanan",
