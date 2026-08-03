@@ -104,6 +104,7 @@ const CONFIG_PROJECTS = [
   {
     title: "Zora Store",
     desc: "Aplikasi web untuk Top Up Game.",
+    image: "img/projects/foto.jpg",
     tags: ["HTML", "CSS"],
     category: "Web App",
     link: "https://website-top-up-sigma.vercel.app/",   // ganti dengan URL proyekmu
