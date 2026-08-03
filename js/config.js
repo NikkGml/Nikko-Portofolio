@@ -119,10 +119,11 @@ const CONFIG_PROJECTS = [
   },
   {
     title: "Game Petualangan 2D",
-    desc: "Game platformer 2D bertema petualangan nusantara yang dibuat menggunakan Unity dan C#.",
-    tags: ["Unity", "C#", "GameDev"],
+    desc: "Game platformer 2D bertema petualangan menggunakan scratch.",
+    image: "img/gameloncat.png",
+    tags: ["Scratch Blocks","GameDev"],
     category: "Game",
-    link: "#",
+    link: "https://scratch.mit.edu/projects/1131604996",
   },
   {
     title: "Dashboard Analytics",
