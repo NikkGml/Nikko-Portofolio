@@ -130,20 +130,6 @@ const CONFIG_PROJECTS = [
     category: "Web App",
     link: "#",
   },
-  {
-    title: "E-Commerce Mini",
-    desc: "Toko online sederhana dengan fitur keranjang belanja, autentikasi, dan dashboard admin lengkap.",
-    tags: ["Laravel", "Tailwind", "MySQL"],
-    category: "Web App",
-    link: "#",
-  },
-  {
-    title: "Fitness Tracker App",
-    desc: "Aplikasi pelacak aktivitas olahraga harian dengan pengingat dan riwayat latihan lengkap.",
-    tags: ["React Native", "AsyncStorage"],
-    category: "Mobile",
-    link: "#",
-  },
 ];
 
 
