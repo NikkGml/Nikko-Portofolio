@@ -110,11 +110,12 @@ const CONFIG_PROJECTS = [
     link: "https://website-top-up-sigma.vercel.app/",   // ganti dengan URL proyekmu
   },
   {
-    title: "Mobile App Pemesanan",
-    desc: "Aplikasi pemesanan layanan berbasis Flutter dengan sistem notifikasi realtime menggunakan Firebase.",
-    tags: ["Flutter", "Firebase", "Dart"],
-    category: "Mobile",
-    link: "#",
+    title: "SMK 17 AGUSTUS",
+    desc: "Project website sekolah menggunakan html.",
+    image: "img/smk.png",
+    tags: ["HTML"],
+    category: "Web App",
+    link: "https://smk-17-agustus.vercel.app/",
   },
   {
     title: "Game Petualangan 2D",
