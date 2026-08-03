@@ -162,7 +162,7 @@ const Projects = (() => {
     grid.innerHTML = filtered.map((p, idx) => `
       <article class="portfolio-card reveal" style="animation-delay:${idx * 0.08}s">
         <div class="portfolio-img-wrap">
-          <img src="${generatePlaceholderSrc(idx + 10, p.title)}" alt="${p.title}" loading="lazy" />
+         <img src="${p.image}" alt="${p.title}" loading="lazy" />
           <span class="portfolio-badge">${p.category}</span>
         </div>
         <div class="portfolio-body">
