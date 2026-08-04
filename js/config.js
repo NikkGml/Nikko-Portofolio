@@ -14,7 +14,7 @@
 const CONFIG_PROFILE = {
   name: "Febian Nikko Ferdi Ansyah",   // Nama lengkap kamu
   initials: "FN",                  // 2 huruf inisial (untuk logo & avatar)
-  tagline: "Software Developer • Content Creator • UI/UX Designer", // Kalimat singkat di bawah nama
+  tagline: "Software Developer • Content Creator • Front End Development", // Kalimat singkat di bawah nama
   greeting: "Halo, saya",          // Kata sapaan sebelum nama besar
   bio: [
     // Paragraf pertama tentang kamu (boleh diedit bebas)
@@ -43,8 +43,8 @@ const CONFIG_PROFILE = {
    Angka yang muncul di bagian bawah hero dengan animasi counter.
    ---------------------------------------------------------------- */
 const CONFIG_STATS = [
-  { number: 0, label: "Proyek" },
-  { number: 0, label: "Tahun pengalaman" },
+  { number: 3, label: "Proyek" },
+  { number: 2, label: "Tahun pengalaman" },
   { number: 0, label: "Klien" },
 ];
 
@@ -82,15 +82,15 @@ const CONFIG_SKILLS = {
     {
       icon: "fa-solid fa-wrench",
       title: "Tools & Others",
-      tags: ["Git", "GitHub", "Figma", "Docker", "VS Code", "OBS Studio"],
+      tags: ["Git", "GitHub", "Figma", "VS Code", "OBS Studio"],
     },
   ],
 
   bars: [
-    { name: "Frontend Development", pct: 90 },
-    { name: "Backend Development", pct: 90 },
-    { name: "UI / UX Design", pct: 75 },
-    { name: "Mobile Development", pct: 65 },
+    { name: "Frontend Development", pct: 70 },
+    { name: "Backend Development", pct: 60 },
+    { name: "UI / UX Design", pct: 50 },
+    { name: "Mobile Development", pct: 50 },
   ],
 };
 
@@ -124,13 +124,6 @@ const CONFIG_PROJECTS = [
     tags: ["Scratch Blocks","GameDev"],
     category: "Game",
     link: "https://scratch.mit.edu/projects/1131604996",
-  },
-  {
-    title: "Dashboard Analytics",
-    desc: "Dashboard analitik data penjualan dengan visualisasi interaktif menggunakan React dan Chart.js.",
-    tags: ["React", "Chart.js", "Tailwind"],
-    category: "Web App",
-    link: "#",
   },
 ];
 
