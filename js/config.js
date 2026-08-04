@@ -14,7 +14,7 @@
 const CONFIG_PROFILE = {
   name: "Febian Nikko Ferdi Ansyah",   // Nama lengkap kamu
   initials: "FN",                  // 2 huruf inisial (untuk logo & avatar)
-  tagline: "Software Developer • Content Creator • Front End Development", // Kalimat singkat di bawah nama
+  tagline: "Software Developer • Content Creator • Frontend Development", // Kalimat singkat di bawah nama
   greeting: "Halo, saya",          // Kata sapaan sebelum nama besar
   bio: [
     // Paragraf pertama tentang kamu (boleh diedit bebas)
