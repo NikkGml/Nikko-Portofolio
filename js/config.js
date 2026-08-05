@@ -44,7 +44,7 @@ const CONFIG_PROFILE = {
    ---------------------------------------------------------------- */
 const CONFIG_STATS = [
   { number: 3, label: "Proyek" },
-  { number: 2, label: "Tahun pengalaman" },
+  { number: 10, label: "Tahun pengalaman" },
   { number: 0, label: "Klien" },
 ];
 
@@ -72,17 +72,17 @@ const CONFIG_SKILLS = {
     {
       icon: "fa-solid fa-desktop",
       title: "Frontend",
-      tags: ["HTML5", "CSS3", "JavaScript", "React", "Vue.js", "Tailwind CSS"],
+      tags: ["HTML5", "CSS3", "JavaScript"],
     },
     {
       icon: "fa-solid fa-server",
       title: "Backend",
-      tags: ["PHP", "Laravel", "Node.js", "Express", "MySQL", "MongoDB"],
+      tags: ["PHP", "Node.js", "MySQL", "MongoDB"],
     },
     {
       icon: "fa-solid fa-wrench",
       title: "Tools & Others",
-      tags: ["Git", "GitHub", "Figma", "VS Code", "OBS Studio"],
+      tags: ["GitHub", "Figma", "VS Code", "OBS Studio", "CapaCuput", "Premiere Pro"],
     },
   ],
 
