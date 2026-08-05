@@ -110,7 +110,7 @@ const CONFIG_PROJECTS = [
     link: "https://website-top-up-sigma.vercel.app/",   // ganti dengan URL proyekmu
   },
   {
-    title: "SMK 17 AGUSTUS",
+    title: "SMK 17 AGUSTUS 1945 SURABAYA ",
     desc: "Project website sekolah menggunakan html.",
     image: "img/smk.png",
     tags: ["HTML"],
@@ -119,7 +119,7 @@ const CONFIG_PROJECTS = [
   },
   {
     title: "Game Petualangan 2D",
-    desc: "Game platformer 2D bertema petualangan menggunakan scratch.",
+    desc: "Game platformer 2D bertema petualangan menggunakan scratch, jika ingin memainkannya di sarankan memakai keyboard.",
     image: "img/gameloncat.png",
     tags: ["Scratch Blocks","GameDev"],
     category: "Game",
