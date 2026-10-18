@@ -77,7 +77,7 @@ const CONFIG_SOCIAL = {
   email: "efendisetiaji07@gmail.com",
   instagram: "",                                                  // Kosongkan jika belum aktif
   github: "https://github.com/NikkGml",
-  linkedin: "https://www.linkedin.com/in/febian-nikko-ferdi-ansyah-b26879384",
+  linkedin: "",
   twitter: "",
   discord: "https://discord.com",                                 // Opsional link Discord
 };
