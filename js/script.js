@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollNav();
   initTextScramble();
   initNahidaMotion();
+  initBackToTop();
   applyConfigData();
 });
 
@@ -92,10 +93,11 @@ function renderProjects(filter = 'all') {
   }
 
   container.innerHTML = filtered.map(p => `
-    <article class="project-editorial-card">
+    <article class="project-editorial-card ${p.featured ? 'is-featured' : ''}">
       <div class="project-img-window">
         <img src="${p.image}" alt="${p.title}" loading="lazy" />
         <span class="project-cat-badge">${p.category === 'Web App' ? 'Aplikasi Web' : p.category}</span>
+        ${p.featured ? '<span class="project-featured-badge"><i class="fa-solid fa-star"></i> Unggulan</span>' : ''}
       </div>
       <div class="project-info-body">
         <h3 class="project-card-heading">${p.title}</h3>
@@ -326,7 +328,7 @@ function initTextScramble() {
   if (!el) return;
 
   const scrambler = new TextScramble(el);
-  const words = ['CIHUY', 'BAIK', 'SETIA'];
+  const words = ['KREATIF', 'SOLUTIF', 'DEDIKATIF', 'SETIA'];
   let counter = 0;
 
   const next = () => {
@@ -347,54 +349,86 @@ function initNahidaMotion() {
   const nahida = document.querySelector('.hero-nahida-character');
   if (!stage || !nahida) return;
 
-  stage.addEventListener('mousemove', (e) => {
-    const rect = stage.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+  // Hanya jalankan parallax di desktop / pointer device
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    stage.addEventListener('mousemove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
 
-    const moveX = (x / rect.width) * 18;
-    const moveY = (y / rect.height) * 18;
+      const moveX = (x / rect.width) * 16;
+      const moveY = (y / rect.height) * 16;
 
-    nahida.style.transform = `translate(${moveX}px, ${moveY - 8}px) scale(1.02)`;
-  });
+      nahida.style.transform = `translate(${moveX}px, ${moveY - 8}px) scale(1.02)`;
+    });
 
-  stage.addEventListener('mouseleave', () => {
-    nahida.style.transform = '';
-  });
+    stage.addEventListener('mouseleave', () => {
+      nahida.style.transform = '';
+    });
+  }
 }
 
 /* ============================================================
-   10. MENU NAVIGASI MOBILE (HAMBURGER DRAWER TOGGLE)
+   10. MENU NAVIGASI MOBILE (HAMBURGER DRAWER & BACKDROP)
    ============================================================ */
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
   const navMenu = document.querySelector('.nav-menu-list');
   const menuIcon = document.getElementById('mobileMenuIcon');
+  const backdrop = document.getElementById('mobileMenuBackdrop');
   if (!toggleBtn || !navMenu) return;
+
+  const openMenu = () => {
+    navMenu.classList.add('open');
+    if (backdrop) backdrop.classList.add('show');
+    if (menuIcon) menuIcon.className = 'fa-solid fa-xmark';
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+  };
+
+  const closeMenu = () => {
+    navMenu.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('show');
+    if (menuIcon) menuIcon.className = 'fa-solid fa-bars';
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
 
   toggleBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    const isOpen = navMenu.classList.toggle('open');
-    if (menuIcon) {
-      menuIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    const isOpen = navMenu.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
     }
   });
+
+  // Klik backdrop untuk menutup menu
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMenu);
+  }
 
   // Tutup menu jika klik di luar area menu
   document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
       if (navMenu.classList.contains('open')) {
-        navMenu.classList.remove('open');
-        if (menuIcon) menuIcon.className = 'fa-solid fa-bars';
+        closeMenu();
       }
+    }
+  });
+
+  // Tutup menu dengan tombol Escape di keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+      closeMenu();
     }
   });
 
   // Tutup menu otomatis setelah memilih salah satu menu tautan
   navMenu.querySelectorAll('.nav-link-item').forEach(link => {
     link.addEventListener('click', () => {
-      navMenu.classList.remove('open');
-      if (menuIcon) menuIcon.className = 'fa-solid fa-bars';
+      closeMenu();
     });
   });
 }
@@ -466,5 +500,32 @@ function initSkillsMeterAnimation() {
     // Fallback jika browser lama tidak mendukung IntersectionObserver
     triggerAnimation();
   }
+}
+
+/* ============================================================
+   12. TOMBOL KEMBALI KE ATAS (BACK TO TOP)
+   ============================================================ */
+function initBackToTop() {
+  const btn = document.getElementById('backToTopBtn');
+  if (!btn) return;
+
+  const handleScroll = () => {
+    if (window.scrollY > 350) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  // Initial check
+  handleScroll();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
 }
 

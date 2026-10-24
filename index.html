@@ -37,7 +37,7 @@
 
       <!-- Menu Navigasi Urut Sesuai Permintaan: Home, Tentang, Keahlian, Proyek, Kontak -->
       <nav role="navigation" aria-label="Navigasi Utama">
-        <ul class="nav-menu-list">
+        <ul class="nav-menu-list" id="navMenuList">
           <li><a href="#home" class="nav-link-item active">Home</a></li>
           <li><a href="#about" class="nav-link-item">Tentang</a></li>
           <li><a href="#skills" class="nav-link-item">Keahlian</a></li>
@@ -53,17 +53,20 @@
           <i class="fa-solid fa-moon" id="themeToggleIcon"></i>
         </button>
 
-        <a href="#contact" class="nav-cta-pill">
+        <a href="#contact" class="nav-cta-pill" aria-label="Hubungi Saya">
           <span>Hubungi Saya</span> <i class="fa-solid fa-paper-plane"></i>
         </a>
 
         <!-- Tombol Menu Mobile Hamburger -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu Navigasi" title="Menu">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="navMenuList" title="Menu">
           <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Backdrop untuk Menu Mobile -->
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
 
   <!-- ==================== FLOATING VERTICAL TOOLBAR ==================== -->
   <aside class="floating-side-dock" aria-label="Aksi Cepat">
@@ -121,7 +124,7 @@
           <div class="hero-statement-typography">
             <div class="statement-title-lockup">
               <span class="statement-script">Nikko</span>
-              <span class="statement-sans" id="scrambleWord">CIHUY</span>
+              <span class="statement-sans" id="scrambleWord">KREATIF</span>
             </div>
 
             <!-- List 3 Pilar Bahasa Indonesia -->
@@ -553,6 +556,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Tombol Melayang Kembali ke Atas (Back to Top) -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
   <!-- Scripts -->
   <script src="js/config.js"></script>
