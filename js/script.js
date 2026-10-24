@@ -1,23 +1,26 @@
 /**
  * 🌿 NAHIDA THEME PORTOFOLIO — SCRIPT.JS
- * Logika Interaktif, Mode Terang & Gelap, Filter Proyek & Animasi
+ * Logika Interaktif, Mode Terang & Gelap, Filter Proyek,
+ * Animasi & Integrasi Penuh dengan CONFIG.JS
  * ============================================================
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
-  initMobileMenu();
-  initSkillsMeterAnimation();
+  applyConfigData();
+  renderSkills();
+  renderContacts();
   renderProjects('all');
-  initFloatingDock();
   initProjectsFilter();
+  initSkillsMeterAnimation();
   initNanaToggle();
+  initTextScramble();
+  initMobileMenu();
+  initFloatingDock();
   initContactForm();
   initScrollNav();
-  initTextScramble();
   initNahidaMotion();
   initBackToTop();
-  applyConfigData();
 });
 
 /* ============================================================
@@ -59,20 +62,205 @@ function updateThemeIcon(theme) {
 }
 
 /* ============================================================
-   2. DATA DARI CONFIG.JS
+   2. INTEGRASI DATA DARI CONFIG.JS
+   Menerapkan semua konfigurasi profil, pilar, dan tema ke HTML
    ============================================================ */
 function applyConfigData() {
-  if (typeof CONFIG_PROFILE === 'undefined') return;
+  // 1. Data Profil Utama
+  if (typeof CONFIG_PROFILE !== 'undefined') {
+    const p = CONFIG_PROFILE;
 
-  const p = CONFIG_PROFILE;
-  const cvBtn = document.getElementById('cvHeroBtn');
-  if (cvBtn && p.cvLink) {
-    cvBtn.href = p.cvLink;
+    // Header Brand
+    const navTitle = document.getElementById('navBrandTitle');
+    const navSub = document.getElementById('navBrandSubtitle');
+    if (navTitle && p.brandTitle) navTitle.textContent = p.brandTitle;
+    if (navSub && p.brandSubtitle) navSub.textContent = p.brandSubtitle;
+
+    // Hero Script Title ("Nikko")
+    const heroScript = document.getElementById('heroScriptTitle');
+    if (heroScript && p.shortName) heroScript.textContent = p.shortName;
+
+    // Magazine Card
+    const magNotch = document.getElementById('magNotchHeader');
+    const magBody = document.getElementById('magBodyQuote');
+    const magFooter = document.getElementById('magFooterLine');
+    if (magNotch && p.magazineNotch) magNotch.textContent = p.magazineNotch;
+    if (magBody && p.magazineQuote) magBody.innerHTML = p.magazineQuote;
+    if (magFooter && (p.magazineFooterLeft || p.magazineFooterRight)) {
+      magFooter.innerHTML = `
+        <span>${p.magazineFooterLeft || ''}</span>
+        <span>${p.magazineFooterRight || ''}</span>
+      `;
+    }
+
+    // Creative Cluster & Buttons
+    const creativeAuthor = document.getElementById('creativeAuthor');
+    const creativeLockup = document.getElementById('creativeLockup');
+    const cvBtn = document.getElementById('cvHeroBtn');
+    const githubBtn = document.getElementById('githubHeroBtn');
+    if (creativeAuthor && p.creativeAuthor) creativeAuthor.textContent = p.creativeAuthor;
+    if (creativeLockup && p.creativeTitle) creativeLockup.innerHTML = p.creativeTitle;
+    if (cvBtn && p.cvLink) cvBtn.href = p.cvLink;
+    if (githubBtn && p.githubLink) githubBtn.href = p.githubLink;
+
+    // Performance Banner
+    const perfHeader = document.getElementById('perfHeader');
+    const perfSub = document.getElementById('perfSub');
+    if (perfHeader && p.performanceHeader) perfHeader.innerHTML = p.performanceHeader;
+    if (perfSub && p.performanceSub) perfSub.innerHTML = p.performanceSub;
+
+    // Profile Widget di Hero
+    const widgetName = document.getElementById('widgetFullName');
+    const widgetRole = document.getElementById('widgetRoleBadge');
+    if (widgetName && p.name) widgetName.textContent = p.name;
+    if (widgetRole && p.roleBadge) widgetRole.textContent = p.roleBadge;
+
+    // About Section Avatar Photo & Name Tag
+    const aboutPhoto = document.getElementById('aboutPhotoImg');
+    const aboutNameTag = document.getElementById('aboutNameTag');
+    if (aboutPhoto && p.photo) {
+      aboutPhoto.src = p.photo;
+      if (p.name) aboutPhoto.alt = `Foto ${p.name}`;
+    }
+    if (aboutNameTag && (p.brandTitle || p.name)) {
+      aboutNameTag.textContent = p.brandTitle || p.name;
+    }
+
+    // About Section Bio Paragraphs
+    const bioContainer = document.getElementById('aboutBioText');
+    if (bioContainer && Array.isArray(p.bio)) {
+      bioContainer.innerHTML = p.bio.map(paragraph => `<p>${paragraph}</p>`).join('');
+    }
+
+    // About Section Specs
+    const specsContainer = document.getElementById('aboutSpecsGrid');
+    if (specsContainer && Array.isArray(p.specs)) {
+      specsContainer.innerHTML = p.specs.map(spec => `
+        <div class="spec-tile">
+          <span class="spec-tile-label">${spec.label}</span>
+          <span class="spec-tile-val">${spec.value}</span>
+        </div>
+      `).join('');
+    }
+
+    // Footer
+    const footerTitle = document.getElementById('footerBrandTitle');
+    const footerSub = document.getElementById('footerBrandSubtitle');
+    const footerCopy = document.getElementById('footerCopyText');
+    const footerCopyright = document.getElementById('footerCopyrightText');
+    if (footerTitle && p.brandTitle) footerTitle.textContent = p.brandTitle;
+    if (footerSub && p.brandSubtitle) footerSub.textContent = p.brandSubtitle;
+    if (footerCopy && p.footerCopy) footerCopy.innerHTML = p.footerCopy;
+    if (footerCopyright && p.copyright) footerCopyright.textContent = p.copyright;
+  }
+
+  // 2. Tiga Pilar Hero (Kiri)
+  if (typeof CONFIG_PILLARS !== 'undefined' && Array.isArray(CONFIG_PILLARS)) {
+    const pillarsContainer = document.getElementById('heroPillarsList');
+    if (pillarsContainer && CONFIG_PILLARS.length > 0) {
+      pillarsContainer.innerHTML = CONFIG_PILLARS.map(item => `
+        <div class="pillar-item-row">
+          <span class="pillar-num">${item.num}</span>
+          <span class="pillar-text">${item.text}</span>
+          <i class="fa-solid fa-heart pillar-heart"></i>
+        </div>
+      `).join('');
+    }
+  }
+
+  // 3. Tema Nahida (Tag Kepribadian & Bubble Chat)
+  if (typeof CONFIG_THEME !== 'undefined') {
+    const t = CONFIG_THEME;
+    const tagsContainer = document.getElementById('heroTagsStack');
+    if (tagsContainer && Array.isArray(t.personalityTags)) {
+      tagsContainer.innerHTML = t.personalityTags.map(tag => `
+        <span class="pill-badge-dark">${tag}</span>
+      `).join('');
+    }
+
+    const bubbleContainer = document.getElementById('heroBubbleText');
+    if (bubbleContainer && (t.bubbleTitle || t.bubbleText)) {
+      bubbleContainer.innerHTML = `
+        <strong>${t.bubbleTitle || 'Halo, saya Nahida!'}</strong>
+        ${t.bubbleText || ''}
+      `;
+    }
   }
 }
 
 /* ============================================================
-   3. RENDER PROYEK (GALERI KARYA)
+   3. RENDER KEAHLIAN & PROGRESS METERS (SKILLS)
+   ============================================================ */
+function renderSkills() {
+  if (typeof CONFIG_SKILLS === 'undefined') return;
+
+  // Render Kartu Prangko Keahlian
+  const postageContainer = document.getElementById('skillsPostageGrid');
+  if (postageContainer && Array.isArray(CONFIG_SKILLS.categories)) {
+    postageContainer.innerHTML = CONFIG_SKILLS.categories.map(cat => `
+      <div class="postage-stamp-card">
+        <div class="stamp-header-row">
+          <span class="stamp-denomination">${cat.denomination || '№ 01'}</span>
+          <span class="stamp-barcode">${cat.barcode || '||| |||| | |||||'}</span>
+        </div>
+        <div class="stamp-title-banner">${cat.title}</div>
+        <p class="stamp-desc">${cat.desc}</p>
+        <div class="stamp-tags-list">
+          ${(cat.tags || []).map(t => `<span class="stamp-tag-pill">${t}</span>`).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Render Meteran Penguasaan
+  const meterGrid = document.getElementById('skillsMeterGrid');
+  if (meterGrid && Array.isArray(CONFIG_SKILLS.bars)) {
+    meterGrid.innerHTML = CONFIG_SKILLS.bars.map(bar => `
+      <div class="meter-unit">
+        <div class="meter-top">
+          <span>${bar.name}</span>
+          <span class="meter-pct" data-target="${bar.pct}">0%</span>
+        </div>
+        <div class="meter-track">
+          <div class="meter-fill" data-width="${bar.pct}" style="width: 0%;"></div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+/* ============================================================
+   4. RENDER SALURAN KONTAK
+   ============================================================ */
+function renderContacts() {
+  if (typeof CONFIG_SOCIAL === 'undefined') return;
+  const container = document.getElementById('contactChannelsList');
+  if (!container) return;
+
+  let channels = [];
+  if (Array.isArray(CONFIG_SOCIAL)) {
+    channels = CONFIG_SOCIAL;
+  } else if (typeof CONFIG_SOCIAL === 'object') {
+    channels = Object.values(CONFIG_SOCIAL).filter(Boolean);
+  }
+
+  if (channels.length === 0) return;
+
+  container.innerHTML = channels.map(c => `
+    <a href="${c.href || '#'}" ${c.href && c.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="nahida-icon-channel-card">
+      <div class="channel-icon-avatar">
+        ${c.iconImg ? `<img src="${c.iconImg}" alt="${c.label}" />` : '<i class="fa-solid fa-link" style="margin:auto;"></i>'}
+      </div>
+      <div class="channel-info-col">
+        <span class="channel-label-mini">${c.label}</span>
+        <span class="channel-main-val">${c.value}</span>
+      </div>
+    </a>
+  `).join('');
+}
+
+/* ============================================================
+   5. RENDER PROYEK (GALERI KARYA)
    ============================================================ */
 function renderProjects(filter = 'all') {
   const container = document.getElementById('projectsGridContainer');
@@ -80,7 +268,7 @@ function renderProjects(filter = 'all') {
 
   const filtered = filter === 'all'
     ? CONFIG_PROJECTS
-    : CONFIG_PROJECTS.filter(item => item.category.toLowerCase() === filter.toLowerCase());
+    : CONFIG_PROJECTS.filter(item => (item.category || '').toLowerCase() === filter.toLowerCase());
 
   if (filtered.length === 0) {
     container.innerHTML = `
@@ -103,7 +291,7 @@ function renderProjects(filter = 'all') {
         <h3 class="project-card-heading">${p.title}</h3>
         <p class="project-card-summary">${p.desc}</p>
         <div class="project-pills-row">
-          ${p.tags.map(t => `<span class="project-tag-item">${t}</span>`).join('')}
+          ${(p.tags || []).map(t => `<span class="project-tag-item">${t}</span>`).join('')}
         </div>
         <div class="project-card-action-bar">
           <a href="${p.link}" target="_blank" rel="noopener noreferrer" class="project-primary-link">
@@ -121,7 +309,21 @@ function renderProjects(filter = 'all') {
 }
 
 function initProjectsFilter() {
-  const pills = document.querySelectorAll('.filter-btn-pill');
+  const filterBar = document.getElementById('galleryFilterBar');
+  if (!filterBar || typeof CONFIG_PROJECTS === 'undefined') return;
+
+  // Ambil semua kategori unik dari CONFIG_PROJECTS
+  const categories = Array.from(new Set(CONFIG_PROJECTS.map(p => p.category).filter(Boolean)));
+
+  filterBar.innerHTML = `
+    <button class="filter-btn-pill active" data-filter="all">SEMUA PROYEK</button>
+    ${categories.map(cat => {
+      const label = cat === 'Web App' ? 'APLIKASI WEB' : cat.toUpperCase();
+      return `<button class="filter-btn-pill" data-filter="${cat}">${label}</button>`;
+    }).join('')}
+  `;
+
+  const pills = filterBar.querySelectorAll('.filter-btn-pill');
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
       pills.forEach(p => p.classList.remove('active'));
@@ -133,7 +335,7 @@ function initProjectsFilter() {
 }
 
 /* ============================================================
-   4. FLOATING DOCK INTERAKSI (LIKE & SALIN LINK)
+   6. FLOATING DOCK INTERAKSI (LIKE & SALIN LINK)
    ============================================================ */
 function initFloatingDock() {
   const heartBtn = document.getElementById('dockHeartBtn');
@@ -173,18 +375,28 @@ function initFloatingDock() {
 }
 
 /* ============================================================
-   5. SWITCHER KUTIPAN PROFIL FEBIAN NIKKO
+   7. SWITCHER KUTIPAN PROFIL (DARI CONFIG_QUOTES)
    ============================================================ */
 function initNanaToggle() {
   const bar = document.getElementById('nanaQuoteBar');
   const display = document.getElementById('widgetQuoteDisplay');
   if (!bar || !display) return;
 
-  const quotes = [
-    "“Menuntut ilmu adalah proses menumbuhkan kebijaksanaan.”",
-    "“Dedikasi dan konsistensi mengubah baris kode menjadi karya nyata.”",
-    "“Masa depan dibangun dari hal-hal kecil yang dipelajari hari ini.”"
-  ];
+  const quoteList = (typeof CONFIG_QUOTES !== 'undefined' && Array.isArray(CONFIG_QUOTES) && CONFIG_QUOTES.length > 0)
+    ? CONFIG_QUOTES
+    : [
+        { label: "Kebijaksanaan", text: "“Menuntut ilmu adalah proses menumbuhkan kebijaksanaan.”" },
+        { label: "Dedikasi", text: "“Dedikasi dan konsistensi mengubah baris kode menjadi karya nyata.”" },
+        { label: "Masa Depan", text: "“Masa depan dibangun dari hal-hal kecil yang dipelajari hari ini.”" }
+      ];
+
+  // Render pill switcher tabs dari config
+  bar.innerHTML = quoteList.map((q, idx) => `
+    <span class="widget-pill-opt ${idx === 0 ? 'active' : ''}" data-quote="${idx}">${q.label}</span>
+  `).join('');
+
+  // Set kutipan awal
+  display.textContent = quoteList[0].text;
 
   const pills = bar.querySelectorAll('.widget-pill-opt');
   pills.forEach(pill => {
@@ -192,10 +404,10 @@ function initNanaToggle() {
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       const idx = parseInt(pill.getAttribute('data-quote'), 10) || 0;
-      
+
       display.style.opacity = '0';
       setTimeout(() => {
-        display.textContent = quotes[idx];
+        display.textContent = quoteList[idx].text;
         display.style.opacity = '1';
       }, 150);
     });
@@ -203,7 +415,7 @@ function initNanaToggle() {
 }
 
 /* ============================================================
-   6. PENGIRIMAN FORMULIR KONTAK
+   8. PENGIRIMAN FORMULIR KONTAK
    ============================================================ */
 function initContactForm() {
   const form = document.getElementById('contactEditorialForm');
@@ -234,7 +446,7 @@ function initContactForm() {
 }
 
 /* ============================================================
-   7. NAVIGASI SCROLL AKTIF
+   9. NAVIGASI SCROLL AKTIF
    Urut: home -> about -> skills -> projects -> contact
    ============================================================ */
 function initScrollNav() {
@@ -263,8 +475,8 @@ function initScrollNav() {
 }
 
 /* ============================================================
-   8. ANIMASI TEKS ACAK (TEXT SCRAMBLE / DECRYPT EFFECT)
-   Berganti: "CIHUY" -> "BAIK" -> "SETIA"
+   10. ANIMASI TEKS ACAK (TEXT SCRAMBLE / DECRYPT EFFECT)
+   Berganti otomatis dari array CONFIG_SCRAMBLE_WORDS
    ============================================================ */
 class TextScramble {
   constructor(el) {
@@ -328,7 +540,13 @@ function initTextScramble() {
   if (!el) return;
 
   const scrambler = new TextScramble(el);
-  const words = ['KREATIF', 'SOLUTIF', 'DEDIKATIF', 'SETIA'];
+  const words = (typeof CONFIG_SCRAMBLE_WORDS !== 'undefined' && Array.isArray(CONFIG_SCRAMBLE_WORDS) && CONFIG_SCRAMBLE_WORDS.length > 0)
+    ? CONFIG_SCRAMBLE_WORDS
+    : ['KREATIF', 'SOLUTIF', 'DEDIKATIF', 'SETIA'];
+
+  // Set teks awal agar sinkron dengan kata pertama
+  el.textContent = words[0];
+
   let counter = 0;
 
   const next = () => {
@@ -342,7 +560,7 @@ function initTextScramble() {
 }
 
 /* ============================================================
-   9. INTERAKSI GERAKAN HALUS NAHIDA (PARALLAX ON HOVER)
+   11. INTERAKSI GERAKAN HALUS NAHIDA (PARALLAX ON HOVER)
    ============================================================ */
 function initNahidaMotion() {
   const stage = document.querySelector('.hero-art-stage');
@@ -369,7 +587,7 @@ function initNahidaMotion() {
 }
 
 /* ============================================================
-   10. MENU NAVIGASI MOBILE (HAMBURGER DRAWER & BACKDROP)
+   12. MENU NAVIGASI MOBILE (HAMBURGER DRAWER & BACKDROP)
    ============================================================ */
 function initMobileMenu() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
@@ -434,7 +652,7 @@ function initMobileMenu() {
 }
 
 /* ============================================================
-   11. ANIMASI TINGKAT PENGUASAAN KEAHLIAN (0% -> TARGET%)
+   13. ANIMASI TINGKAT PENGUASAAN KEAHLIAN (0% -> TARGET%)
    Animasi angka berhitung halus & bilah persentase meluncur saat di-scroll
    ============================================================ */
 function initSkillsMeterAnimation() {
@@ -503,7 +721,7 @@ function initSkillsMeterAnimation() {
 }
 
 /* ============================================================
-   12. TOMBOL KEMBALI KE ATAS (BACK TO TOP)
+   14. TOMBOL KEMBALI KE ATAS (BACK TO TOP)
    ============================================================ */
 function initBackToTop() {
   const btn = document.getElementById('backToTopBtn');
@@ -528,4 +746,3 @@ function initBackToTop() {
     });
   });
 }
-

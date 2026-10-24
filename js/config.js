@@ -1,124 +1,162 @@
 /* ================================================================
-   🌿 CONFIG.JS — FILE KONFIGURASI PORTOFOLIO (TEMA NAHIDA)
+   🌿 CONFIG.JS — PUSAT KONTROL UTAMA PORTOFOLIO (TEMA NAHIDA)
    ================================================================
-   Halo Nikko! File ini adalah tempat utama untuk mengubah semua isi
-   portofoliomu: profil, proyek, keahlian, kontak, dan teks tema.
-   Semua data otomatis tersambung ke tampilan website.
+   Halo! File ini adalah tempat kamu bisa mengubah semua isi
+   portofolio dengan mudah tanpa perlu mengedit kode HTML.
+   Cukup ubah data di bawah ini, dan tampilan website akan
+   otomatis menyesuaikan!
    ================================================================ */
 
 /* ----------------------------------------------------------------
-   👤 PROFIL UTAMA
+   👤 1. PROFIL UTAMA & INFORMASI PRIBADI
    ---------------------------------------------------------------- */
 const CONFIG_PROFILE = {
-  name: "Febian Nikko Ferdi Ansyah",   // Nama lengkap
-  shortName: "Nikko",                  // Nama panggilan
-  initials: "FN",                      // Inisial untuk logo & avatar
-  tagline: "Software Developer • Content Creator • Frontend Enthusiast",
-  greeting: "Halo, saya",              // Kata sapaan
-  subGreeting: "Selamat datang di Digital Sanctuary saya 🌿",
+  // Nama lengkap & panggilan
+  name: "Febian Nikko Ferdi Ansyah",
+  shortName: "Nikko",
 
-  bio: [
-    `Saya adalah seorang <strong>siswa SMK Brantas Karangkates jurusan RPL (Rekayasa Perangkat Lunak)</strong> yang memiliki ketertarikan besar di dunia teknologi, khususnya pengembangan website, desain antarmuka, serta pembuatan konten digital. Saya senang mempelajari hal baru dan terus meningkatkan kemampuan melalui berbagai proyek pribadi maupun tugas sekolah.`,
-    `Saat ini saya berfokus mempelajari <strong>HTML, CSS, JavaScript, PHP, MySQL, Python, dan dasar-dasar Laravel</strong>. Selain itu, saya juga aktif membuat konten di YouTube, mendesain thumbnail kreatif, serta mengembangkan berbagai proyek aplikasi web interaktif sebagai bagian dari petualangan belajar saya.`,
-  ],
+  // Nama brand di navbar & footer
+  brandTitle: "FEBIAN NIKKO",
+  brandSubtitle: "ruang kreatif // 2026",
 
-  // Info detail di kartu About
-  location: "Blitar, Jawa Timur",
-  education: "SMK Brantas Karangkates — RPL",
-  focus: "Web App & Mobile Development",
-  languages: "Indonesia, English",
-  status: "Open to Learn & Build Projects",
-  statusOpen: true,    // true = dot hijau (aktif)
+  // Peran / Status di widget profil
+  roleBadge: "Software Developer • Siswa RPL",
 
-  // Link Unduh CV
+  // Foto Profil (file di dalam folder assets/img/)
+  photo: "assets/img/foto.jpg",
+
+  // Kartu Magazine Editorial di Hero Kanan
+  magazineNotch: "ditulis oleh @FebianNikko untuk Portofolio Kreatif",
+  magazineQuote: "Halo! Saya <strong>Febian Nikko Ferdi Ansyah</strong>, seorang siswa SMK Brantas Karangkates jurusan Rekayasa Perangkat Lunak (RPL). Senang merancang antarmuka web modern yang fungsional, estetis, dan bermakna. Selalu bersemangat belajar teknologi baru dan membuat karya digital.",
+  magazineFooterLeft: "@ 2026 Portofolio Nikko",
+  magazineFooterRight: "SMK Brantas Karangkates • RPL",
+
+  // Kotak Kreatif & Banner di Hero
+  creativeAuthor: "dibuat oleh nikko",
+  creativeTitle: "Ruang <span class=\"pill-highlight-text\">kreatif</span> Nikko!",
+  performanceHeader: "PERFORMA & DEDIKASI!!",
+  performanceSub: "SMK BRANTAS KARANGKATES • REKAYASA PERANGKAT LUNAK 💚<br />BELAJAR, BERKARYA, MENGUASAI MASA DEPAN",
+
+  // Tautan CV & GitHub
   cvLink: "#",
-};
+  githubLink: "https://github.com/NikkGml",
 
-
-/* ----------------------------------------------------------------
-   🍃 TEMA NAHIDA & AKASHA TERMINAL
-   ---------------------------------------------------------------- */
-const CONFIG_THEME = {
-  // Palet Warna Utama
-  primary: "#52B788",         // Nahida Dendro Green
-  primaryDark: "#2D6A4F",     // Forest Deep Green
-  primaryLight: "#74C69D",    // Sage Bright
-  accentGold: "#D4AF37",      // Sumeru Gold Accent
-  bgLight: "#F7FAF5",         // Cream Sage Light
-  bgDark: "#0D1812",          // Deep Sanctuary Slate Dark
-  
-  // Kutipan Nahida & Dialog Mascot
-  dialogueQuote: "“To learn is to cultivate wisdom. Mari ciptakan sesuatu yang luar biasa bersama!”",
-  mascotQuotes: [
-    "“Semua mimpi besar dimulai dari baris kode pertama!”",
-    "“Pengetahuan adalah lentera yang menerangi masa depan.”",
-    "“Jangan lupa istirahat dan minum air ya! 🌿”",
-    "“Setiap bug adalah kesempatan untuk belajar hal baru!”",
-    "“Selamat menjelajahi portofolio Febian Nikko!”"
+  // Paragraf Catatan Profil di Bagian "Tentang Saya"
+  bio: [
+    "Saya adalah seorang <strong>siswa SMK Brantas Karangkates jurusan RPL (Rekayasa Perangkat Lunak)</strong> yang memiliki ketertarikan besar di dunia teknologi, khususnya pengembangan website, desain antarmuka, serta pembuatan konten digital.",
+    "Saat ini saya berfokus mempelajari <strong>HTML, CSS, JavaScript, PHP, MySQL, Python, dan dasar-dasar Laravel</strong>. Selain itu, saya juga aktif membuat konten di YouTube, mendesain thumbnail kreatif, serta mengembangkan berbagai proyek website dan aplikasi sebagai sarana mengasah kemampuan teknis."
   ],
-  mascotEnabled: true // Tampilkan mascot interaktif Nahida di pojok
+
+  // Rincian Spesifikasi di Bagian "Tentang Saya"
+  specs: [
+    { label: "Lokasi", value: "Blitar, Jawa Timur" },
+    { label: "Pendidikan", value: "SMK Brantas Karangkates" },
+    { label: "Fokus Keahlian", value: "Web & Mobile Development" },
+    { label: "Bahasa", value: "Indonesia, Inggris" }
+  ],
+
+  // Teks Footer & Hak Cipta
+  footerCopy: "Didesain dengan inspirasi tema Nahida (Genshin Impact) • Siswa RPL SMK Brantas Karangkates",
+  copyright: "© 2026 Febian Nikko Ferdi Ansyah. Hak Cipta Dilindungi."
 };
 
 
 /* ----------------------------------------------------------------
-   📊 STATISTIK HERO
+   🌱 2. TIGA PILAR DI HERO SECTION (KIRI)
    ---------------------------------------------------------------- */
-const CONFIG_STATS = [
-  { number: 3, label: "Proyek Selesai", suffix: "+" },
-  { number: 10, label: "Tahun Pengalaman", suffix: "th" },
-  { number: 100, label: "Passion & Belajar", suffix: "%" },
+const CONFIG_PILLARS = [
+  { num: "01", text: "Pengembang Frontend Responsif" },
+  { num: "02", text: "Backend PHP, Laravel & MySQL" },
+  { num: "03", text: "Pembuat Konten Digital & Desain" }
 ];
 
 
 /* ----------------------------------------------------------------
-   🔗 SOSIAL MEDIA & KONTAK
+   ✨ 3. KATA SCRAMBLE DI HERO ("Nikko KREATIF / SOLUTIF ...")
    ---------------------------------------------------------------- */
-const CONFIG_SOCIAL = {
-  email: "efendisetiaji07@gmail.com",
-  instagram: "",                                                  // Kosongkan jika belum aktif
-  github: "https://github.com/NikkGml",
-  linkedin: "",
-  twitter: "",
-  discord: "https://discord.com",                                 // Opsional link Discord
+const CONFIG_SCRAMBLE_WORDS = [
+  "KREATIF",
+  "SOLUTIF",
+  "DEDIKATIF",
+  "SETIA"
+];
+
+
+/* ----------------------------------------------------------------
+   🍃 4. TEMA NAHIDA & GELEMBUNG CHAT
+   ---------------------------------------------------------------- */
+const CONFIG_THEME = {
+  // Tiga pill badge di samping karakter Nahida
+  personalityTags: ["RAMAH", "EMPATIK", "KREATIF"],
+
+  // Isi gelembung sapaan Nahida
+  bubbleTitle: "Halo, saya Nahida!",
+  bubbleText: "Selamat datang di ruang kreatif Nikko."
 };
 
 
 /* ----------------------------------------------------------------
-   🛠️ KEAHLIAN (SKILLS)
+   💬 5. KUTIPAN SWITCHER TAB (WIDGET PROFIL HERO)
+   ---------------------------------------------------------------- */
+const CONFIG_QUOTES = [
+  {
+    label: "Kebijaksanaan",
+    text: "“Menuntut ilmu adalah proses menumbuhkan kebijaksanaan.”"
+  },
+  {
+    label: "Dedikasi",
+    text: "“Dedikasi dan konsistensi mengubah baris kode menjadi karya nyata.”"
+  },
+  {
+    label: "Masa Depan",
+    text: "“Masa depan dibangun dari hal-hal kecil yang dipelajari hari ini.”"
+  }
+];
+
+
+/* ----------------------------------------------------------------
+   🛠️ 6. KEAHLIAN & TINGKAT PENGUASAAN (SKILLS)
    ---------------------------------------------------------------- */
 const CONFIG_SKILLS = {
+  // Kartu Prangko Keahlian (Bisa ditambah / dikurangi)
   categories: [
     {
-      icon: "fa-solid fa-code",
-      title: "Frontend Development",
-      desc: "Membangun antarmuka modern, responsif, dan interaktif.",
-      tags: ["HTML5", "CSS3", "JavaScript", "Tailwind / Bootstrap", "Responsive Design"],
+      denomination: "№ 01",
+      barcode: "||| |||| | |||||",
+      title: "PENGEMBANGAN FRONTEND",
+      desc: "Membangun tampilan antarmuka web yang modern, interaktif, responsif, dan nyaman digunakan.",
+      tags: ["HTML5", "CSS3", "JavaScript", "Desain Responsif"]
     },
     {
-      icon: "fa-solid fa-server",
-      title: "Backend & Database",
-      desc: "Logika server, API, dan pengelolaan basis data relasional.",
-      tags: ["PHP", "Laravel Basics", "MySQL", "Node.js Basics", "REST API"],
+      denomination: "№ 02",
+      barcode: "||| || | |||| ||",
+      title: "BACKEND & BASIS DATA",
+      desc: "Mengolah alur logika server, rancangan basis data relasional, dan integrasi API.",
+      tags: ["PHP", "MySQL", "Dasar Laravel", "Dasar Node.js"]
     },
     {
-      icon: "fa-solid fa-wand-magic-sparkles",
-      title: "Creative Tools & Dev",
-      desc: "Tooling desain, video editing, dan lingkungan pengembangan.",
-      tags: ["Git & GitHub", "VS Code", "Figma", "OBS Studio", "CapCut / Premiere", "Python Basics"],
-    },
+      denomination: "№ 03",
+      barcode: "|||| | |||| | ||",
+      title: "STUDIO KREATIF & ALAT",
+      desc: "Alat desain grafis, pengelolaan kode versi Git, serta software produksi video multimedia.",
+      tags: ["Git & GitHub", "VS Code", "Figma", "OBS Studio", "CapCut / Premiere"]
+    }
   ],
 
+  // Bilah Meteran Persentase (0% - 100%)
   bars: [
-    { name: "Frontend Development", pct: 75, icon: "fa-brands fa-html5" },
-    { name: "Backend & PHP / MySQL", pct: 65, icon: "fa-brands fa-php" },
-    { name: "UI / UX & Graphic Design", pct: 60, icon: "fa-solid fa-palette" },
-    { name: "Content Creation & Video", pct: 70, icon: "fa-solid fa-video" },
-  ],
+    { name: "Pengembangan Frontend", pct: 75 },
+    { name: "Backend PHP & MySQL", pct: 65 },
+    { name: "Desain UI / UX & Grafis", pct: 60 },
+    { name: "Pembuatan Konten Video", pct: 70 }
+  ]
 };
 
 
 /* ----------------------------------------------------------------
-   💼 PROYEK UNGGULAN
+   💼 7. GALERI PROYEK (PROJECTS)
+   ----------------------------------------------------------------
+   Kategori otomatis muncul di tombol filter ("Web App", "Game", dll.)
    ---------------------------------------------------------------- */
 const CONFIG_PROJECTS = [
   {
@@ -153,5 +191,30 @@ const CONFIG_PROJECTS = [
     link: "https://scratch.mit.edu/projects/1131604996",
     github: "",
     featured: false
+  }
+];
+
+
+/* ----------------------------------------------------------------
+   📬 8. SALURAN KONTAK & MEDIA SOSIAL
+   ---------------------------------------------------------------- */
+const CONFIG_SOCIAL = [
+  {
+    label: "Surat Elektronik",
+    value: "efendisetiaji07@gmail.com",
+    href: "mailto:efendisetiaji07@gmail.com",
+    iconImg: "assets/img/nahida/129148f167419af87b094fb68adccf78.jpg"
   },
+  {
+    label: "Repositori GitHub",
+    value: "github.com/NikkGml",
+    href: "https://github.com/NikkGml",
+    iconImg: "assets/img/nahida/Nahida Settings Icon.jpeg"
+  },
+  {
+    label: "Komunitas Discord",
+    value: "Terhubung di Discord",
+    href: "https://discord.com",
+    iconImg: "assets/img/nahida/7aa5f3c29b29e64e461c2a42830d8432.jpg"
+  }
 ];
